@@ -10,12 +10,23 @@ class myApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: student());
+    return MaterialApp(
+      home: student(),
+    );
   }
+}
+
+class AppColors {
+  static const Color primary = Color(0xFF3F51B5);
+  static const Color secondary = Color(0xFFE8EAF6);
+  static const Color tartiary = Color(0xFF34A853);
+  static const Color neutral = Color(0xFFFBFCFF);
 }
 
 class student extends StatelessWidget {
   const student({super.key});
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +37,10 @@ class student extends StatelessWidget {
         actions: [
           Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.info)),
         ],
+        backgroundColor: AppColors.neutral,
+        foregroundColor: AppColors.primary,
       ),
-      body: Home(),
+      body: Home(), backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 2,
@@ -63,7 +76,7 @@ class Home extends StatelessWidget {
           children: [
             Container(
               width: double.maxFinite,
-            
+              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -89,14 +102,14 @@ class Home extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.blueGrey.shade100,
+                        color: AppColors.primary.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(10),
                       ),
 
                       padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
                       child: Text(
                         'Roll: 784303',
-                        style: TextStyle(fontSize: 12, color: Colors.black),
+                        style: TextStyle(fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Text('Telecommunication Technology'),
@@ -126,11 +139,12 @@ class Home extends StatelessWidget {
                             Row(
                               
                               children: [
-                                Icon(Icons.calendar_month,size: 35,),
+                                Icon(Icons.calendar_month,size: 35, color: AppColors.primary,),
                                 Spacer(),
                                 Text('On Track', style: TextStyle(
                                   fontSize: 12,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.tartiary
                                 ),)
                               ],
                             ),
@@ -142,7 +156,7 @@ class Home extends StatelessWidget {
                             Text('85%', style: TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue
+                              color: AppColors.primary
                             ),),
                             SizedBox(height: 10,),
                             LinearProgressIndicator(
@@ -176,23 +190,25 @@ class Home extends StatelessWidget {
                             Row(
                               
                               children: [
-                                Icon(Icons.star,size: 35,),
+                                Icon(Icons.star,size: 35, color: AppColors.primary),
                                 Spacer(),
                                 Text('Top 10%', style: TextStyle(
                                   fontSize: 12,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary
                                 ),)
                               ],
                             ),
                             SizedBox(height: 10,),
                             Text('CGPA', style: TextStyle(
-                              fontSize: 14
+                              fontSize: 14,
+                              
                             ),),
                             SizedBox(height: 4,),
                             Text('3.75', style: TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.bold,
-                              color: Colors.blue
+                              color: AppColors.primary
                             ),),
                             SizedBox(height: 8,),
                             Text('Last Updated: Semester 5', style: TextStyle(
@@ -239,11 +255,11 @@ class Home extends StatelessWidget {
             ),
             SizedBox(
               width: double.maxFinite,
-              child: buttons(title: 'Edit Profile', icon: Icons.edit, bgcolor: Colors.blueAccent, fgcolor: Colors.white,)),
+              child: buttons(title: 'Edit Profile', icon: Icons.edit, bgcolor: AppColors.primary, fgcolor: Colors.white.withValues(alpha: 0.8))),
             SizedBox(height: 10,),
             SizedBox(
               width: double.maxFinite,
-              child: buttons(title: 'Logout', icon: Icons.logout, bgcolor: Colors.white, fgcolor: Colors.black,)),
+              child: buttons(title: 'Logout', icon: Icons.logout, bgcolor: Colors.white, fgcolor: Colors.red,)),
           ],
         ),
       ),
@@ -276,7 +292,7 @@ class detailBar extends StatelessWidget {
         padding: const EdgeInsets.all(18.0),
         child: Row(
           children: [
-            Icon(icon),
+            Icon(icon, color: AppColors.primary),
             SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -302,6 +318,7 @@ class buttons extends StatelessWidget {
   final IconData icon;
   final Color bgcolor;
   final Color fgcolor;
+  
 
   @override
   Widget build(BuildContext context) {
