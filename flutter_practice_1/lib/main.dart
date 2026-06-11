@@ -1,49 +1,58 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_1/const_colors.dart';
+import 'package:flutter_practice_1/dashboard_page.dart';
 
 void main() {
-  runApp(myApp());
+  runApp(MyApp());
 }
 
-class myApp extends StatelessWidget {
-  const myApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: student(),
+      
+      home: Student(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class AppColors {
-  static const Color primary = Color(0xFF3F51B5);
-  static const Color secondary = Color(0xFFE8EAF6);
-  static const Color tartiary = Color(0xFF34A853);
-  static const Color neutral = Color(0xFFFBFCFF);
-}
-
-class student extends StatelessWidget {
-  const student({super.key});
+class Student extends StatefulWidget {
+  const Student({super.key});
 
   
 
   @override
+  State<Student> createState() => _StudentState();
+}
+
+class _StudentState extends State<Student> {
+
+  int currentIndex = 0;
+
+  final List<Widget> pages = [
+    DashBoard(),
+    Center(child: Text('Academics')),
+    Home(),
+    Center(child: Text('Settings')),
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Student Profile'),
-        leading: Icon(Icons.arrow_back),
-        actions: [
-          Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.info)),
-        ],
-        backgroundColor: AppColors.neutral,
-        foregroundColor: AppColors.primary,
-      ),
-      body: Home(), backgroundColor: Colors.white,
+      body: pages[currentIndex], 
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: 2,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex=index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
@@ -231,21 +240,21 @@ class Home extends StatelessWidget {
                 Text('PERSONAL DETAILS', style: TextStyle(fontSize: 14)),
                 SizedBox(height: 15),
 
-                detailBar(
+                DetailBar(
                   title: 'Email Address',
                   description: 'mahamud@gmail.com',
                   icon: Icons.message,
                 ),
                 SizedBox(height: 10),
 
-                detailBar(
+                DetailBar(
                   title: 'Phone Number',
                   description: '018 XXXX XXXX',
                   icon: Icons.call,
                 ),
                 SizedBox(height: 10),
 
-                detailBar(
+                DetailBar(
                   title: 'Home Adress',
                   description: 'Noakhali, Bangladesh',
                   icon: Icons.location_city,
@@ -255,11 +264,11 @@ class Home extends StatelessWidget {
             ),
             SizedBox(
               width: double.maxFinite,
-              child: buttons(title: 'Edit Profile', icon: Icons.edit, bgcolor: AppColors.primary, fgcolor: Colors.white.withValues(alpha: 0.8))),
+              child: Buttons(title: 'Edit Profile', icon: Icons.edit, bgcolor: AppColors.primary, fgcolor: Colors.white.withValues(alpha: 0.8))),
             SizedBox(height: 10,),
             SizedBox(
               width: double.maxFinite,
-              child: buttons(title: 'Logout', icon: Icons.logout, bgcolor: Colors.white, fgcolor: Colors.red,)),
+              child: Buttons(title: 'Logout', icon: Icons.logout, bgcolor: Colors.white, fgcolor: Colors.red,)),
           ],
         ),
       ),
@@ -267,8 +276,8 @@ class Home extends StatelessWidget {
   }
 }
 
-class detailBar extends StatelessWidget {
-  const detailBar({
+class DetailBar extends StatelessWidget {
+  const DetailBar({
     super.key,
     required this.title,
     required this.description,
@@ -311,11 +320,11 @@ class detailBar extends StatelessWidget {
   }
 }
 
-class buttons extends StatelessWidget {
-  const buttons({super.key, required this.title, required this.icon, required this.bgcolor, required this.fgcolor,});
+class Buttons extends StatelessWidget {
+  const Buttons({super.key, required this.title, required this.icon, required this.bgcolor, required this.fgcolor,});
 
   final String title;
-  final IconData icon;
+  final IconData? icon;
   final Color bgcolor;
   final Color fgcolor;
   
