@@ -1,0 +1,58 @@
+lib/
+│
+├── main.dart
+│
+├── core/
+│   │
+│   ├── constants/
+│   │   ├── app_colors.dart
+│   │   ├── app_strings.dart
+│   │   └── app_sizes.dart
+│   │
+│   ├── theme/
+│   │   ├── app_theme.dart
+│   │   └── text_styles.dart
+│   │
+│   ├── services/
+│   │   ├── api_service.dart
+│   │   ├── storage_service.dart
+│   │   └── auth_service.dart
+│   │
+│   └── utils/
+│       ├── helpers.dart
+│       └── validators.dart
+│
+├── features/
+│   │
+│   ├── home/
+│   │   ├── screens/
+│   │   ├── widgets/
+│   │   ├── models/
+│   │   └── providers/
+│   │
+│   ├── profile/
+│   │   ├── screens/
+│   │   ├── widgets/
+│   │   ├── models/
+│   │   └── providers/
+│   │
+│   ├── settings/
+│   │   ├── screens/
+│   │   ├── widgets/
+│   │   ├── models/
+│   │   └── providers/
+│   │
+│   └── auth/
+│       ├── screens/
+│       ├── widgets/
+│       ├── models/
+│       └── providers/
+│
+└── shared/
+    │
+    ├── widgets/
+    │   ├── custom_button.dart
+    │   ├── custom_app_bar.dart
+    │   └── custom_textfield.dart
+    │
+    └── models/
