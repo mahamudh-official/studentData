@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice_7/core/theme/app_colors.dart';
+import 'package:practice_7/core/constants/app_colors.dart';
 
 void main() {
   runApp(MyApp());
